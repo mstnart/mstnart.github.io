@@ -63,6 +63,13 @@ export const site = {
         "Managed virtual camera movements, scene composition and visual storytelling.",
         "Built visual effects, motion graphics and post-production in Sony Vegas Pro and After Effects.",
       ],
+      /** Optional archive image shown under the entry. */
+      archive: {
+        src: "/media/images/archive/ae-2017-csgo-dof.jpg",
+        alt: "After Effects CC 2017 project for a CS:GO edit: a composition with a depth pass, glow passes and adjustment layers in the timeline.",
+        caption: "After Effects, May 2017 — a CS:GO edit: depth-of-field from a separate depth pass, glow passes added on top, seven adjustment layers.",
+        source: "https://x.com/akaSoraa/status/869966398495260672",
+      },
     },
     {
       type: "school",

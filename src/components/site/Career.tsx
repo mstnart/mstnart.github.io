@@ -69,6 +69,29 @@ export function About() {
                         <li key={pt}>{pt}</li>
                       ))}
                     </ul>
+                    {"archive" in e && (
+                      <figure className="mt-6 max-w-xl">
+                        <a href={e.archive.src} target="_blank" rel="noopener noreferrer" className="group block overflow-hidden border border-line bg-surface">
+                          <Image
+                            src={e.archive.src}
+                            alt={e.archive.alt}
+                            width={1392}
+                            height={1158}
+                            sizes="(min-width: 768px) 36rem, 90vw"
+                            className="h-auto w-full opacity-90 transition-[opacity,transform] duration-700 group-hover:scale-[1.015] group-hover:opacity-100"
+                          />
+                          <span className="sr-only"> (opens full size in a new tab)</span>
+                        </a>
+                        <figcaption className="tc mt-3 flex flex-wrap gap-x-3 gap-y-1 text-fg-muted">
+                          <span className="text-accent">Archive</span>
+                          <span className="normal-case tracking-normal">{e.archive.caption}</span>
+                          <a href={e.archive.source} target="_blank" rel="noopener noreferrer" className="link-line text-fg">
+                            Original post
+                            <span className="sr-only"> (opens in a new tab)</span>
+                          </a>
+                        </figcaption>
+                      </figure>
+                    )}
                   </div>
                   <p className="md:pt-1 md:text-right">
                     <span className="block">{e.place}</span>

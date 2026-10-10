@@ -273,7 +273,7 @@ export const projects: Project[] = [
   },
   {
     slug: "muzzle-blast-vfx-breakdown",
-    track: "lab",
+    track: "gaming",
     title: "Muzzle Blast VFX Breakdown",
     summary:
       "A sniper rifle shot pulled apart layer by layer: muzzle blast, gas flow, air wake, shockwave and ejection smoke.",

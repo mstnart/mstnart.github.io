@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { useId, useRef, useState } from "react";
+import { useId, useLayoutEffect, useRef, useState } from "react";
 import { Pause, Play } from "lucide-react";
+import { usePauseWhenHidden } from "./ui";
 
 /**
  * Before/after slider. The range input does the work, so it is keyboard
@@ -95,6 +96,10 @@ export function EditCompare({
   const a = useRef<HTMLVideoElement>(null);
   const b = useRef<HTMLVideoElement>(null);
   const [both, setBoth] = useState(false);
+  usePauseWhenHidden(a);
+  usePauseWhenHidden(b);
+  // The paused videos must not come back showing a "Pause both" button.
+  useLayoutEffect(() => () => setBoth(false), []);
 
   const toggleBoth = () => {
     const vids = [a.current, b.current].filter(Boolean) as HTMLVideoElement[];

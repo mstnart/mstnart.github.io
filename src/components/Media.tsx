@@ -1,6 +1,6 @@
 "use client";
 
-import { usePrefersReducedMotion } from "./ui";
+import { usePauseWhenHidden, usePrefersReducedMotion, useUnloadWhenHidden } from "./ui";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { Pause, Play } from "lucide-react";
@@ -80,29 +80,10 @@ export function MediaFrame({ media, plate, seed, className = "", sizes = "100vw"
       media.mode === "ambient" ? (
         <AmbientVideo src={media.src} poster={media.poster} label={media.alt} onError={() => setFailed(true)} />
       ) : (
-        <video
-          className="absolute inset-0 h-full w-full bg-black object-contain"
-          src={media.src}
-          poster={media.poster}
-          controls
-          playsInline
-          preload="metadata"
-          aria-label={media.alt}
-          onError={() => setFailed(true)}
-        />
+        <PlayerVideo src={media.src} poster={media.poster} label={media.alt} onError={() => setFailed(true)} />
       );
   } else {
-    body = (
-      <iframe
-        className="absolute inset-0 h-full w-full"
-        src={media.embedSrc}
-        title={media.title}
-        loading="lazy"
-        allow="autoplay; fullscreen; picture-in-picture; encrypted-media"
-        allowFullScreen
-        referrerPolicy="strict-origin-when-cross-origin"
-      />
-    );
+    body = <Embed src={media.embedSrc} title={media.title} />;
   }
 
   return (
@@ -112,6 +93,43 @@ export function MediaFrame({ media, plate, seed, className = "", sizes = "100vw"
       </div>
       {media?.caption && <figcaption className="meta mt-3 text-bone-dim">{media.caption}</figcaption>}
     </figure>
+  );
+}
+
+/** Video with native controls. Stops when the page is navigated away from. */
+function PlayerVideo({ src, poster, label, onError }: { src: string; poster?: string; label: string; onError: () => void }) {
+  const ref = useRef<HTMLVideoElement>(null);
+  usePauseWhenHidden(ref);
+  return (
+    <video
+      ref={ref}
+      className="absolute inset-0 h-full w-full bg-black object-contain"
+      src={src}
+      poster={poster}
+      controls
+      playsInline
+      preload="metadata"
+      aria-label={label}
+      onError={onError}
+    />
+  );
+}
+
+/** YouTube/Vimeo player. Unloaded when the page is navigated away from, so it can't keep playing. */
+function Embed({ src, title }: { src?: string; title: string }) {
+  const ref = useRef<HTMLIFrameElement>(null);
+  useUnloadWhenHidden(ref, src);
+  return (
+    <iframe
+      ref={ref}
+      className="absolute inset-0 h-full w-full"
+      src={src}
+      title={title}
+      loading="lazy"
+      allow="autoplay; fullscreen; picture-in-picture; encrypted-media"
+      allowFullScreen
+      referrerPolicy="strict-origin-when-cross-origin"
+    />
   );
 }
 
@@ -135,6 +153,7 @@ export function AmbientVideo({
   const ref = useRef<HTMLVideoElement>(null);
   const reduce = usePrefersReducedMotion();
   const [userPaused, setUserPaused] = useState(false);
+  usePauseWhenHidden(ref);
   const [playing, setPlaying] = useState(false);
 
   useEffect(() => {

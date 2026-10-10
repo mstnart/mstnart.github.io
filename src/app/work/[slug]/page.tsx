@@ -73,7 +73,7 @@ async function ProjectContent({ params }: Pick<PageProps<"/work/[slug]">, "param
               <ArrowLeft size={16} aria-hidden /> Back to work
             </Link>
             <span aria-hidden>·</span>
-            <Link href={`/#${project.track === "brand" ? "brands" : project.track === "lab" ? "3d" : "gaming"}`} className="hover:text-fg">
+            <Link href={track.href} className="hover:text-fg">
               {track.title}
             </Link>
             <span aria-hidden>·</span>

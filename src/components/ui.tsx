@@ -1,7 +1,29 @@
 "use client";
 
 import { motion } from "motion/react";
-import { useEffect, useState, useSyncExternalStore } from "react";
+import { useEffect, useLayoutEffect, useState, useSyncExternalStore } from "react";
+
+/*
+ * Next.js keeps pages you navigate away from mounted but hidden (React <Activity>, display: none),
+ * so their media would keep playing off-screen. Layout-effect cleanups run when a page is hidden.
+ */
+
+/** Pauses a video/audio element when its page is hidden. */
+export function usePauseWhenHidden(ref: React.RefObject<HTMLMediaElement | null>) {
+  useLayoutEffect(() => {
+    const el = ref.current;
+    return () => el?.pause();
+  }, [ref]);
+}
+
+/** Unloads an embed (YouTube/Vimeo iframe) when its page is hidden, and reloads it when shown again. */
+export function useUnloadWhenHidden(ref: React.RefObject<HTMLIFrameElement | null>, src: string | undefined) {
+  useLayoutEffect(() => {
+    const el = ref.current;
+    if (el && src && el.getAttribute("src") !== src) el.setAttribute("src", src);
+    return () => el?.setAttribute("src", "about:blank");
+  }, [ref, src]);
+}
 
 const ease = [0.22, 1, 0.36, 1] as const;
 

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState, ViewTransition } from "react";
 import { AnimatePresence, motion, useMotionValue, useSpring } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
-import { tracks, trackById } from "@/content/tracks";
+import { tracks, trackByHash, trackById } from "@/content/tracks";
 import { categoryById } from "@/content/categories";
 import { coverName } from "@/lib/transitions";
 import type { ResolvedProject, TrackId } from "@/lib/types";
@@ -148,9 +148,9 @@ function Index({ projects }: { projects: ResolvedProject[] }) {
   useEffect(() => {
     const fromHash = () => {
       const h = window.location.hash.replace("#", "").replace(/^work-/, "");
-      const id = h === "brands" ? "brand" : h === "3d" ? "lab" : h;
-      if (id in trackById) {
-        setTab(id as TrackId);
+      const id = trackByHash[h];
+      if (id) {
+        setTab(id);
         document.getElementById("index")?.scrollIntoView();
       }
     };
