@@ -38,7 +38,7 @@ export function ProjectCard({
   const H = headingLevel === 2 ? "h2" : "h3";
   const lg = size === "lg";
   return (
-    <Link href={`/work/${project.slug}`} prefetch className="group block">
+    <Link href={`/work/${project.slug}`} className="group block">
       <ViewTransition name={coverName(project.slug)} share="morph" default="none">
         <div className={`relative overflow-hidden bg-surface-2 ${lg ? "aspect-[16/9] md:aspect-[21/9]" : "aspect-[16/10]"}`}>
           <div className="h-full w-full transition-transform duration-[1.2s] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]">
@@ -215,7 +215,6 @@ function Index({ projects }: { projects: ResolvedProject[] }) {
               <li key={p.slug} className="border-t border-line">
                 <Link
                   href={`/work/${p.slug}`}
-                  prefetch
                   onPointerEnter={() => setHover(p)}
                   onFocus={() => setHover(null)}
                   className="group grid grid-cols-[4.5rem_1fr_auto] items-center gap-4 py-5 md:grid-cols-[3.5rem_1fr_14rem_8rem_4rem_1.5rem] md:gap-6 md:py-7"

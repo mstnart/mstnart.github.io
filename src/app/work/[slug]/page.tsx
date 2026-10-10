@@ -221,7 +221,6 @@ async function ProjectContent({ params }: Pick<PageProps<"/work/[slug]">, "param
               <Link
                 key={label}
                 href={`/work/${p.slug}`}
-                prefetch
                 className={`group flex items-center gap-5 py-8 transition-colors hover:text-accent ${label === "Next" ? "border-t border-line sm:flex-row-reverse sm:border-l sm:border-t-0 sm:pl-8 sm:text-right" : "sm:pr-8"}`}
               >
                 <Icon size={20} aria-hidden className="shrink-0 transition-transform group-hover:scale-110" />
