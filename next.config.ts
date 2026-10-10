@@ -14,9 +14,12 @@ const nextConfig: NextConfig = {
     return [
       { source: "/work", destination: "/#work", permanent: false },
       { source: "/gaming", destination: "/#gaming", permanent: false },
-      { source: "/brands", destination: "/#brands", permanent: false },
-      { source: "/3d", destination: "/#3d", permanent: false },
-      { source: "/about", destination: "/#career", permanent: false },
+      { source: "/brands", destination: "/#business", permanent: false },
+      { source: "/business", destination: "/#business", permanent: false },
+      { source: "/3d", destination: "/#personal", permanent: false },
+      { source: "/personal", destination: "/#personal", permanent: false },
+      { source: "/about", destination: "/#about", permanent: false },
+      { source: "/career", destination: "/#about", permanent: false },
       { source: "/contact", destination: "/#contact", permanent: false },
     ];
   },
