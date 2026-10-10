@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: PageProps<"/work/[slug]">): P
 
 export default function ProjectPage({ params }: PageProps<"/work/[slug]">) {
   return (
-    <Suspense fallback={<div className="shell py-16 text-fg-muted">Loading project…</div>}>
+    <Suspense fallback={<div className="shell tc pb-16 pt-36 text-fg-muted">Loading project…</div>}>
       <ProjectContent params={params} />
     </Suspense>
   );
@@ -40,11 +40,14 @@ export default function ProjectPage({ params }: PageProps<"/work/[slug]">) {
 
 function Section({ title, children, id }: { title: string; children: React.ReactNode; id: string }) {
   return (
-    <section aria-labelledby={id} className="border-t border-line py-14">
+    <section aria-labelledby={id} className="py-16 md:py-24">
       <div className="shell">
-        <h2 id={id} className="heading mb-6 text-[clamp(1.6rem,3vw,2.2rem)]">
-          {title}
-        </h2>
+        <div className="mb-10 grid gap-4 border-t border-line pt-6 md:grid-cols-[1fr_2fr]">
+          <p className="tc text-accent">—</p>
+          <h2 id={id} className="heading text-[clamp(1.9rem,3.6vw,3rem)]">
+            {title}
+          </h2>
+        </div>
         {children}
       </div>
     </section>
@@ -64,9 +67,9 @@ async function ProjectContent({ params }: Pick<PageProps<"/work/[slug]">, "param
     <ViewTransition enter="page" exit="page" default="none">
       <article>
         {/* Header */}
-        <header className="shell pb-8 pt-8 md:pt-12">
-          <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-x-3 gap-y-2 text-fg-muted">
-            <Link href="/#work" className="inline-flex min-h-10 items-center gap-1.5 font-medium hover:text-fg">
+        <header className="shell pb-10 pt-28 md:pb-14 md:pt-36">
+          <nav aria-label="Breadcrumb" className="tc flex flex-wrap items-center gap-x-3 gap-y-2 text-fg-muted">
+            <Link href="/#work" className="inline-flex min-h-10 items-center gap-1.5 hover:text-fg">
               <ArrowLeft size={16} aria-hidden /> Back to work
             </Link>
             <span aria-hidden>·</span>
@@ -78,15 +81,15 @@ async function ProjectContent({ params }: Pick<PageProps<"/work/[slug]">, "param
               {index + 1} of {list.length}
             </span>
           </nav>
-          <div className="mt-6 flex flex-wrap items-center gap-2">
+          <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-2">
             <TrackTag track={project.track} />
-            {project.kind && <span className="rounded-full border border-line px-2.5 py-1 text-sm">{project.kind}</span>}
-            {project.year && <span className="rounded-full border border-line px-2.5 py-1 text-sm">{project.year}</span>}
+            {project.kind && <span className="tc text-fg-muted">{project.kind}</span>}
+            {project.year && <span className="tc text-fg-muted">{project.year}</span>}
           </div>
-          <h1 className="heading mt-4 max-w-4xl text-[clamp(2.4rem,6vw,4.25rem)]">{project.title}</h1>
-          <p className="mt-4 max-w-3xl text-xl text-fg-muted text-pretty">{project.summary}</p>
+          <h1 className="display mt-5 max-w-6xl text-[clamp(2.75rem,8vw,7.5rem)]">{project.title}</h1>
+          <p className="mt-6 max-w-3xl text-xl text-fg-muted text-pretty">{project.summary}</p>
           {project.notice && (
-            <p className="mt-6 flex max-w-3xl items-start gap-3 rounded-xl border border-line bg-surface p-4 text-fg-muted">
+            <p className="mt-8 flex max-w-3xl items-start gap-3 border-l-2 border-accent bg-surface py-3 pl-4 pr-4 text-fg-muted">
               <Info size={18} aria-hidden className="mt-0.5 shrink-0 text-accent" />
               {project.notice}
             </p>
@@ -96,23 +99,23 @@ async function ProjectContent({ params }: Pick<PageProps<"/work/[slug]">, "param
         <Hero project={project} />
 
         {/* Overview + facts */}
-        <div className="shell grid gap-10 py-14 md:grid-cols-[1fr_20rem]">
+        <div className="shell grid gap-12 py-16 md:grid-cols-[1fr_22rem] md:gap-20 md:py-24">
           <div className="space-y-8">
             {project.overview && (
               <div>
-                <h2 className="heading mb-3 text-2xl">Overview</h2>
-                <p className="text-lg text-pretty">{project.overview}</p>
+                <h2 className="tc mb-4 text-fg-muted">Overview</h2>
+                <p className="text-[clamp(1.25rem,2vw,1.6rem)] leading-[1.4] text-pretty">{project.overview}</p>
               </div>
             )}
             {project.objective && (
               <div>
-                <h2 className="heading mb-3 text-2xl">Goal</h2>
+                <h2 className="tc mb-4 text-fg-muted">Goal</h2>
                 <p className="text-lg text-fg-muted text-pretty">{project.objective}</p>
               </div>
             )}
             {project.description && project.description.length > 0 && (
               <div className="space-y-4 text-lg text-fg-muted">
-                <h2 className="heading mb-3 text-2xl text-fg">Notes</h2>
+                <h2 className="tc mb-4 text-fg-muted">Notes</h2>
                 {project.description.map((d, i) => (
                   <p key={i} className="text-pretty">
                     {d}
@@ -132,7 +135,7 @@ async function ProjectContent({ params }: Pick<PageProps<"/work/[slug]">, "param
                 <div key={i}>
                   <h3 className="mb-3 text-lg font-semibold">{c.title}</h3>
                   {c.type === "grade" ? (
-                    <div className="max-w-4xl overflow-hidden rounded-xl">
+                    <div className="max-w-5xl overflow-hidden">
                       <GradeSlider before={c.before} after={c.after} beforeLabel={c.beforeLabel ?? "Source"} afterLabel={c.afterLabel ?? "Graded"} alt={`${project.title}, ${c.title}`} />
                     </div>
                   ) : (
@@ -153,11 +156,11 @@ async function ProjectContent({ params }: Pick<PageProps<"/work/[slug]">, "param
 
         {project.process.length > 0 && (
           <Section id="process" title="Process">
-            <ol className="grid gap-4 md:grid-cols-2">
+            <ol className="grid gap-x-10 gap-y-12 md:grid-cols-2">
               {project.process.map((s, i) => (
-                <li key={i} className="rounded-2xl border border-line bg-surface p-5">
-                  <span className="text-sm font-semibold text-accent">Step {i + 1}</span>
-                  <h3 className="heading mt-1 text-xl">{s.title}</h3>
+                <li key={i} className="border-t border-line pt-5">
+                  <span className="tc text-accent">Step {String(i + 1).padStart(2, "0")}</span>
+                  <h3 className="heading mt-3 text-2xl">{s.title}</h3>
                   <p className="mt-1 text-fg-muted">{s.body}</p>
                 </li>
               ))}
@@ -169,10 +172,10 @@ async function ProjectContent({ params }: Pick<PageProps<"/work/[slug]">, "param
           <Section id="credits" title="Credits and files">
             <div className="grid gap-8 md:grid-cols-[1fr_20rem]">
               {project.credits && project.credits.length > 0 && (
-                <dl className="divide-y divide-line rounded-2xl border border-line bg-surface">
+                <dl className="divide-y divide-line border-y border-line">
                   {project.credits.map((c, i) => (
-                    <div key={i} className="grid gap-1 p-4 sm:grid-cols-[9rem_1fr] sm:gap-4">
-                      <dt className="font-semibold">{c.label}</dt>
+                    <div key={i} className="grid gap-1 py-4 sm:grid-cols-[10rem_1fr] sm:gap-4">
+                      <dt className="tc pt-1 text-fg-muted">{c.label}</dt>
                       <dd className="text-fg-muted">
                         {c.url ? (
                           <a href={c.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-start gap-1 underline underline-offset-4 hover:text-fg">
@@ -192,7 +195,7 @@ async function ProjectContent({ params }: Pick<PageProps<"/work/[slug]">, "param
                 <ul className="space-y-3">
                   {project.downloads.map((d) => (
                     <li key={d.href}>
-                      <a href={d.href} download className="flex items-center justify-between gap-4 rounded-2xl border border-line bg-surface p-4 hover:border-fg">
+                      <a href={d.href} download className="flex items-center justify-between gap-4 border border-line-strong p-4 transition-colors hover:border-accent">
                         <span>
                           <span className="block font-semibold">{d.label}</span>
                           {d.meta && <span className="text-sm text-fg-muted">{d.meta}</span>}
@@ -209,8 +212,8 @@ async function ProjectContent({ params }: Pick<PageProps<"/work/[slug]">, "param
       </article>
 
       {prev && next && (
-        <nav aria-label={`More in ${track.title}`} className="border-t border-line py-10">
-          <div className="shell grid gap-4 sm:grid-cols-2">
+        <nav aria-label={`More in ${track.title}`} className="py-10">
+          <div className="shell grid border-y border-line sm:grid-cols-2">
             {[
               { p: prev, label: "Previous", Icon: ArrowLeft },
               { p: next, label: "Next", Icon: ArrowRight },
@@ -219,14 +222,14 @@ async function ProjectContent({ params }: Pick<PageProps<"/work/[slug]">, "param
                 key={label}
                 href={`/work/${p.slug}`}
                 prefetch
-                className={`group flex items-center gap-4 rounded-2xl border border-line bg-surface p-5 hover:border-fg ${label === "Next" ? "sm:flex-row-reverse sm:text-right" : ""}`}
+                className={`group flex items-center gap-5 py-8 transition-colors hover:text-accent ${label === "Next" ? "border-t border-line sm:flex-row-reverse sm:border-l sm:border-t-0 sm:pl-8 sm:text-right" : "sm:pr-8"}`}
               >
                 <Icon size={20} aria-hidden className="shrink-0 transition-transform group-hover:scale-110" />
                 <span>
-                  <span className="block text-sm text-fg-muted">
+                  <span className="tc block text-fg-muted">
                     {label} in {track.label}
                   </span>
-                  <span className="heading block text-xl">{p.title}</span>
+                  <span className="heading mt-2 block text-[clamp(1.5rem,3vw,2.5rem)]">{p.title}</span>
                 </span>
               </Link>
             ))}
@@ -236,7 +239,7 @@ async function ProjectContent({ params }: Pick<PageProps<"/work/[slug]">, "param
 
       {related.length > 0 && (
         <Section id="related" title="You might also like">
-          <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
             {related.map((p) => (
               <li key={p.slug}>
                 <ProjectCard project={p} />
@@ -260,7 +263,7 @@ function Hero({ project }: { project: ResolvedProject }) {
     <div className="shell">
       <ViewTransition name={coverName(project.slug)} share="morph" default="none">
         <div
-          className={`overflow-hidden rounded-[1.5rem] border border-line bg-dark ${portrait ? "mx-auto" : ""}`}
+          className={`overflow-hidden bg-dark ${portrait ? "mx-auto" : ""}`}
           style={portrait ? { maxWidth: `calc(80svh * ${aspect})` } : undefined}
         >
           <MediaFrame media={media} plate={project.plate} seed={project.slug} priority sizes={portrait ? "50vw" : "(min-width: 1200px) 1150px, 100vw"} aspect={aspect} />
@@ -279,18 +282,18 @@ function Facts({ project }: { project: ResolvedProject }) {
   if (project.tools?.length) rows.push(["Tools", project.tools.join(", ")]);
   return (
     <aside aria-label="Project facts">
-      <dl className="divide-y divide-line rounded-2xl border border-line bg-surface">
+      <dl className="divide-y divide-line border-y border-line">
         {rows.map(([k, v]) => (
-          <div key={k} className="p-4">
-            <dt className="text-sm text-fg-muted">{k}</dt>
-            <dd className="font-medium">{v}</dd>
+          <div key={k} className="py-4">
+            <dt className="tc text-fg-muted">{k}</dt>
+            <dd className="mt-1">{v}</dd>
           </div>
         ))}
       </dl>
       {project.tags && project.tags.length > 0 && (
         <ul aria-label="Tags" className="mt-4 flex flex-wrap gap-2">
           {project.tags.map((t) => (
-            <li key={t} className="rounded-full bg-surface-2 px-3 py-1 text-sm">
+            <li key={t} className="tc border border-line px-2.5 py-1 text-fg-muted">
               {t}
             </li>
           ))}
@@ -309,7 +312,7 @@ function Gallery({ project }: { project: ResolvedProject }) {
         const wide = !portrait && items.length > 2 && i % 5 === 0;
         return (
           <li key={i} className={`${wide ? "sm:col-span-2" : ""}`}>
-            <div className="overflow-hidden rounded-xl border border-line bg-surface">
+            <div className="overflow-hidden bg-surface">
               <MediaFrame
                 media={m}
                 plate={{ style: plateStyles[(plateStyles.indexOf(project.plate.style) + i + 1) % plateStyles.length], hue: project.plate.hue }}

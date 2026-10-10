@@ -1,20 +1,18 @@
 import { ViewTransition } from "react";
 import { getProjects } from "@/lib/projects";
-import { Hero, Reel } from "@/components/site/Hero";
+import { Hero } from "@/components/site/Hero";
 import { Work } from "@/components/site/Work";
-import { Career } from "@/components/site/Career";
-import { Contact, Skills } from "@/components/site/Contact";
+import { About } from "@/components/site/Career";
+import { Contact } from "@/components/site/Contact";
 
-/** The whole portfolio on one page: intro → highlights → work → career → skills → contact. */
+/** The whole portfolio on one page: reel → work → about → contact. */
 export default function Home() {
   return (
     <ViewTransition enter="page" exit="page" default="none">
       <div>
         <Hero />
-        <Reel />
         <Work projects={getProjects()} />
-        <Career />
-        <Skills />
+        <About />
         <Contact />
       </div>
     </ViewTransition>

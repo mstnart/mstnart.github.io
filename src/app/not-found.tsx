@@ -6,13 +6,20 @@ export const metadata: Metadata = { title: "Page not found" };
 
 export default function NotFound() {
   return (
-    <section className="shell flex min-h-[70dvh] flex-col items-start justify-center py-16">
-      <p className="eyebrow">Error 404</p>
-      <h1 className="heading mt-2 text-[clamp(2.4rem,6vw,4rem)]">This page doesn&apos;t exist.</h1>
-      <p className="mt-4 max-w-md text-lg text-fg-muted">The link may be old, or the project was renamed.</p>
+    <section className="shell flex min-h-[80dvh] flex-col items-start justify-center pb-16 pt-32">
+      <p className="tc flex items-center gap-3 text-fg-muted">
+        <span aria-hidden className="h-2 w-2 rounded-full bg-accent" />
+        Error 404 · No signal
+      </p>
+      <h1 className="display mt-6 text-[clamp(3rem,9vw,8rem)]">
+        Missing
+        <br />
+        <span className="text-fg-muted">frame.</span>
+      </h1>
+      <p className="mt-6 max-w-md text-lg text-fg-muted">The link may be old, or the project was renamed.</p>
       <Link
         href="/"
-        className="mt-8 inline-flex min-h-12 items-center gap-2 rounded-xl bg-accent px-5 font-semibold text-on-accent"
+        className="mt-10 inline-flex min-h-12 items-center gap-2 bg-accent px-5 font-semibold text-on-accent transition-colors hover:bg-fg"
       >
         <ArrowLeft size={18} aria-hidden />
         Back to the homepage

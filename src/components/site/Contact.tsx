@@ -1,93 +1,77 @@
 "use client";
 
-import { Download, Mail, MapPin } from "lucide-react";
+import { ArrowDownToLine, ArrowUpRight } from "lucide-react";
 import { site } from "@/content/site";
 import { CopyButton } from "../ui";
+import { activeSocials } from "./Footer";
 
-export function Skills() {
-  const groups = [
-    { title: "What I do", items: site.expertise },
-    { title: "Tools", items: site.tools },
-  ];
-  return (
-    <section aria-labelledby="skills-title" className="border-t border-line bg-surface/60 py-20">
-      <div className="shell">
-        <p className="eyebrow">Skills</p>
-        <h2 id="skills-title" className="heading mt-2 text-[clamp(2rem,4.5vw,3rem)]">
-          Skills and tools
-        </h2>
-        <div className="mt-10 grid gap-5 md:grid-cols-3">
-          {groups.map((g) => (
-            <div key={g.title} className="rounded-2xl border border-line bg-surface p-6">
-              <h3 className="heading text-xl">{g.title}</h3>
-              <ul className="mt-4 flex flex-wrap gap-2">
-                {g.items.map((s) => (
-                  <li key={s} className="rounded-full bg-surface-2 px-3 py-1.5 font-medium">
-                    {s}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-          <div className="rounded-2xl border border-line bg-surface p-6">
-            <h3 className="heading text-xl">Languages</h3>
-            <ul className="mt-4 space-y-3">
-              {site.languages.map((l) => (
-                <li key={l.name} className="flex items-center justify-between gap-4 border-b border-line pb-3 last:border-0">
-                  <span className="font-medium">{l.name}</span>
-                  <span className="text-fg-muted">{l.level}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
+/** Closing call to action: one huge line, the email as the main link. */
 export function Contact({ headingLevel = 2 }: { headingLevel?: 1 | 2 }) {
   const H = headingLevel === 1 ? "h1" : "h2";
+  const socials = activeSocials();
   return (
-    <section id="contact" aria-labelledby="contact-title" className="py-20">
-      <div className="shell">
-        <div className="rounded-[2rem] bg-dark px-6 py-12 text-on-dark md:px-12 md:py-16">
-          <p className="inline-flex items-center gap-2 text-sm font-medium text-on-dark/80">
-            <span aria-hidden className="h-2 w-2 rounded-full bg-[#4ade80]" />
-            {site.availability}
-          </p>
-          <H id="contact-title" className="heading mt-4 max-w-3xl text-[clamp(2rem,5vw,3.5rem)]">
-            Hiring, or have a project in mind? Let&apos;s talk.
-          </H>
-          <p className="mt-4 max-w-2xl text-lg text-on-dark/80">
-            Email is the fastest way to reach me. Tell me about the role or the project and when you need it.
-          </p>
-          <div className="mt-8 flex flex-wrap items-center gap-3">
+    <section id="contact" aria-labelledby="contact-title" className="relative overflow-hidden border-t border-line py-24 md:py-36">
+      <div aria-hidden className="pointer-events-none absolute -bottom-1/2 left-1/2 h-[70vw] w-[70vw] -translate-x-1/2 rounded-full bg-accent/10 blur-[120px]" />
+      <div className="shell relative">
+        <p className="tc flex items-center gap-3 text-fg-muted">
+          <span aria-hidden className="h-2 w-2 rounded-full bg-[#4ade80]" />
+          {site.availability}
+        </p>
+        <H id="contact-title" className="display mt-8 text-[clamp(3.25rem,10vw,9.5rem)]">
+          Let&apos;s make
+          <br />
+          <span className="text-fg-muted">something</span> <span className="text-accent">good.</span>
+        </H>
+
+        <div className="mt-14 grid gap-10 border-t border-line pt-10 md:mt-20 md:grid-cols-[2fr_1fr]">
+          <div>
+            <p className="tc text-fg-muted">Email is the fastest way to reach me</p>
             <a
               href={`mailto:${site.email}`}
-              className="inline-flex min-h-12 items-center gap-2 rounded-xl bg-on-dark px-5 font-semibold text-dark transition-transform hover:-translate-y-0.5"
+              className="heading link-line group mt-4 inline-flex items-center gap-3 break-all text-[clamp(1.5rem,4vw,3.25rem)] hover:text-accent"
             >
-              <Mail size={18} aria-hidden />
               {site.email}
+              <ArrowUpRight aria-hidden className="h-[0.8em] w-[0.8em] shrink-0 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
             </a>
-            <CopyButton
-              value={site.email}
-              label="Copy email"
-              className="inline-flex min-h-12 items-center rounded-xl border border-on-dark/30 px-5 font-semibold transition-colors hover:border-on-dark"
-            />
-            <a
-              href={site.cv}
-              download
-              className="inline-flex min-h-12 items-center gap-2 rounded-xl border border-on-dark/30 px-5 font-semibold transition-colors hover:border-on-dark"
-            >
-              <Download size={18} aria-hidden />
-              Download CV
-            </a>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <CopyButton
+                value={site.email}
+                label="Copy email"
+                className="tc inline-flex min-h-12 items-center border border-line-strong px-5 text-fg transition-colors hover:border-fg"
+              />
+              <a
+                href={site.cv}
+                download
+                className="tc inline-flex min-h-12 items-center gap-2 border border-line-strong px-5 text-fg transition-colors hover:border-accent hover:bg-accent hover:text-on-accent"
+              >
+                Download CV
+                <ArrowDownToLine size={14} aria-hidden />
+              </a>
+            </div>
           </div>
-          <p className="mt-6 inline-flex items-center gap-2 text-on-dark/80">
-            <MapPin size={16} aria-hidden />
-            {site.location}
-          </p>
+          <dl className="grid content-start gap-6">
+            <div>
+              <dt className="tc text-fg-muted">Location</dt>
+              <dd className="mt-1 text-lg">{site.location}</dd>
+            </div>
+            {socials.length > 0 && (
+              <div>
+                <dt className="tc text-fg-muted">Elsewhere</dt>
+                <dd className="mt-1">
+                  <ul>
+                    {socials.map((s) => (
+                      <li key={s.label}>
+                        <a href={s.url} target="_blank" rel="noopener noreferrer" className="link-line text-lg">
+                          {s.label}
+                          <span className="sr-only"> (opens in a new tab)</span>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </dd>
+              </div>
+            )}
+          </dl>
         </div>
       </div>
     </section>

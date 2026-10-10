@@ -122,12 +122,15 @@ export function AmbientVideo({
   label,
   onError,
   className = "absolute inset-0 h-full w-full object-cover",
+  controlClassName = "bottom-3 right-3",
 }: {
   src: string;
   poster?: string;
   label: string;
   onError?: () => void;
   className?: string;
+  /** Position classes for the pause button. */
+  controlClassName?: string;
 }) {
   const ref = useRef<HTMLVideoElement>(null);
   const reduce = usePrefersReducedMotion();
@@ -168,7 +171,7 @@ export function AmbientVideo({
       <button
         type="button"
         onClick={() => setUserPaused(playing)}
-        className="meta absolute bottom-3 right-3 z-10 flex min-h-11 items-center gap-2 border border-line-strong bg-ink/80 px-3 text-bone backdrop-blur-sm transition-colors hover:border-signal hover:text-signal"
+        className={`meta absolute ${controlClassName} z-10 flex min-h-11 items-center gap-2 border border-line-strong bg-ink/60 px-3 text-bone backdrop-blur-sm transition-colors hover:border-signal hover:text-signal`}
         aria-label={playing ? "Pause background video" : "Play background video"}
       >
         {playing ? <Pause size={14} aria-hidden /> : <Play size={14} aria-hidden />}
