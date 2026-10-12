@@ -82,6 +82,34 @@ export const projects: Project[] = [
     ],
   },
   {
+    slug: "giddy-lounge-pizza-reel",
+    track: "brand",
+    title: "Giddy Lounge Pizza Reel",
+    summary:
+      "A 28-second vertical ad for a restaurant: one pizza played in reverse, from the plate back to raw dough, then forward again to the table.",
+    categories: ["motion-video", "campaigns"],
+    tags: ["Vertical video", "Food", "Restaurant", "Reels"],
+    year: 2026,
+    role: "Edit, titles",
+    kind: "Self-initiated concept",
+    notice: "Self-initiated concept. Not commissioned by Giddy Lounge. I did not shoot the footage; I edited it and added the titles.",
+    featured: true,
+    order: 2,
+    plate: { style: "sun", hue: 95 },
+    thumbnail: "/media/thumbnails/giddy-lounge.jpg",
+    hero: {
+      type: "video",
+      src: "/media/videos/giddy-lounge/ad.mp4",
+      poster: "/media/posters/giddy-lounge.jpg",
+      alt: "Giddy Lounge pizza reel, 28 seconds, vertical",
+      aspect: 9 / 16,
+    },
+    overview:
+      "The Reel opens on a finished pizza with the line “Bu pizza 20 saniye önce sadece hamurdu” (twenty seconds ago this pizza was only dough), then rewinds through cheese, sauce and dough with an on-screen timer.",
+    objective:
+      "Show that the food is made fresh in the kitchen, and hold the viewer to the end card: “Giddy Lounge. Şimdi senin sıran.”",
+  },
+  {
     slug: "vals-diamond-social-content-system",
     track: "brand",
     title: "Vals Diamond Social Content System",
@@ -153,7 +181,7 @@ export const projects: Project[] = [
     kind: "Self-initiated concept",
     notice: "Self-initiated concept. Not commissioned by DCI Dental Center International.",
     featured: false,
-    order: 6,
+    order: 5,
     plate: { style: "contour", hue: 180 },
     thumbnail: "/media/images/dci/post-1.jpg",
     hero: {
@@ -190,7 +218,7 @@ export const projects: Project[] = [
     notice:
       "Self-initiated concept. Not commissioned by Titanic Hotels. Footage is licensed stock; only the opening aerial was filmed in Antalya.",
     featured: false,
-    order: 8,
+    order: 4,
     plate: { style: "scan", hue: 200 },
     thumbnail: "/media/posters/titanic-antalya-promo.jpg",
     hero: {
@@ -248,7 +276,7 @@ export const projects: Project[] = [
     role: "Editor, motion designer",
     kind: "Showreel",
     featured: true,
-    order: 2,
+    order: 6,
     plate: { style: "scan", hue: 270 },
     thumbnail: "/media/posters/showreel-2022.jpg",
     hero: {
@@ -281,7 +309,7 @@ export const projects: Project[] = [
     tags: ["VFX", "3D", "Simulation", "Breakdown"],
     role: "VFX",
     featured: true,
-    order: 4,
+    order: 7,
     plate: { style: "strip", hue: 24 },
     thumbnail: "/media/posters/vfx-breakdown.jpg",
     hero: {
@@ -311,7 +339,7 @@ export const projects: Project[] = [
     tags: ["Vertical video", "Gaming", "Ads", "Motion graphics"],
     role: "Edit, motion graphics",
     featured: true,
-    order: 5,
+    order: 8,
     plate: { style: "bars", hue: 350 },
     thumbnail: "/media/posters/odinboost-1.jpg",
     hero: {
@@ -345,7 +373,7 @@ export const projects: Project[] = [
     tags: ["Gaming", "Cinematic", "Editing", "Colour grading"],
     role: "Editor",
     featured: false,
-    order: 7,
+    order: 9,
     plate: { style: "contour", hue: 160 },
     thumbnail: "/media/thumbnails/without-you.jpg",
     hero: { type: "embed", url: "https://www.youtube.com/watch?v=7jyqcGB_-bw", title: "WITHOUT YOU" },
@@ -363,7 +391,7 @@ export const projects: Project[] = [
     role: "Modelling, shading, lighting",
     kind: "Personal 3D study",
     featured: false,
-    order: 9,
+    order: 10,
     plate: { style: "rings", hue: 330 },
     thumbnail: "/media/images/blender-donuts/photo-1.jpg",
     hero: {
@@ -394,7 +422,7 @@ export const projects: Project[] = [
     role: "Animation",
     kind: "Personal study",
     featured: false,
-    order: 10,
+    order: 11,
     plate: { style: "grid", hue: 140 },
     thumbnail: "/media/thumbnails/animation-training-1.jpg",
     hero: { type: "embed", url: "https://youtu.be/fuAw-ht2X5s", title: "Animation training #1" },
@@ -412,7 +440,7 @@ export const projects: Project[] = [
     role: "Editor",
     kind: "Personal film",
     featured: false,
-    order: 11,
+    order: 12,
     plate: { style: "strip", hue: 30 },
     thumbnail: "/media/posters/dies-irae.jpg",
     hero: {

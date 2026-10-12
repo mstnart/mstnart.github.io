@@ -21,20 +21,20 @@ export interface Track {
 /** The id stays stable ("brand", "lab") so old data and links keep working; labels can change freely. */
 export const tracks: Track[] = [
   {
-    id: "gaming",
-    label: "Gaming",
-    title: "Gaming & esports",
-    href: "/#gaming",
-    blurb: "Showreels, cinematic edits and vertical ads built from game footage.",
-    colorVar: "var(--track-gaming)",
-  },
-  {
     id: "brand",
     label: "Business",
     title: "Business & brands",
     href: "/#business",
     blurb: "Hotel films, social content systems and campaign visuals for businesses.",
     colorVar: "var(--track-brand)",
+  },
+  {
+    id: "gaming",
+    label: "Gaming",
+    title: "Gaming & esports",
+    href: "/#gaming",
+    blurb: "Showreels, cinematic edits and vertical ads built from game footage.",
+    colorVar: "var(--track-gaming)",
   },
   {
     id: "lab",

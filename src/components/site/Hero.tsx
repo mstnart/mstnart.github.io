@@ -104,7 +104,7 @@ export function Hero() {
   );
 }
 
-const disciplines = ["Video editing", "Motion graphics", "Visual effects", "3D in Blender", "Brand films", "Gaming edits", "Social content", "Colour"];
+const disciplines = ["Brand films", "Social content", "Video editing", "Motion graphics", "Colour", "Gaming edits", "Visual effects", "3D in Blender"];
 
 /** Slow ticker of disciplines along the bottom edge of the reel. Decorative; the list is in About. */
 function Disciplines() {

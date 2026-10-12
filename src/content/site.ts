@@ -10,11 +10,11 @@ export const site = {
   /** Short line used in titles and search results. */
   role: "Video editor & graphic designer",
   description:
-    "Burak Mestan is a video editor and graphic designer in Antalya: gaming videos, brand films, social content and 3D/VFX work.",
+    "Burak Mestan is a video editor and graphic designer in Antalya: brand films, social content, gaming videos and 3D/VFX work.",
 
   /** One sentence under the big greeting on the home page. */
   intro:
-    "I'm a video editor and graphic designer in Antalya. I make gaming videos, brand films, social content and 3D work in Blender.",
+    "I'm a video editor and graphic designer in Antalya. I make brand films, social content, gaming videos and 3D work in Blender.",
 
   photo: "/media/images/profile.jpg",
   /** The CV people can download. Replace the file to update it. */
