@@ -37,7 +37,7 @@ export const site = {
    */
   socials: [
     { label: "YouTube", url: "https://www.youtube.com/@soraa2509" },
-    { label: "Instagram", url: "" },
+    { label: "Instagram", url: "https://www.instagram.com/mstnart/" },
     { label: "Behance", url: "" },
     { label: "LinkedIn", url: "" },
   ],
