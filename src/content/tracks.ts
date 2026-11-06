@@ -21,14 +21,6 @@ export interface Track {
 /** The id stays stable ("brand", "lab") so old data and links keep working; labels can change freely. */
 export const tracks: Track[] = [
   {
-    id: "brand",
-    label: "Business",
-    title: "Business & brands",
-    href: "/#business",
-    blurb: "Hotel films, social content systems and campaign visuals for businesses.",
-    colorVar: "var(--track-brand)",
-  },
-  {
     id: "gaming",
     label: "Gaming",
     title: "Gaming & esports",
@@ -43,6 +35,14 @@ export const tracks: Track[] = [
     href: "/#personal",
     blurb: "Personal films, Blender studies and animation practice.",
     colorVar: "var(--track-lab)",
+  },
+  {
+    id: "brand",
+    label: "Business",
+    title: "Business & brands",
+    href: "/#business",
+    blurb: "Hotel films, social content systems and campaign visuals for businesses.",
+    colorVar: "var(--track-brand)",
   },
 ];
 
